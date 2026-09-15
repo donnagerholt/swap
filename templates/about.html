@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% block title %}About | The Swap Club{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+{% block content %}
+
+  <!-- HERO SECTION -->
+<section class="hero">
+  <h1 class="hero-title" data-aos="fade-up">About Our Club</h1>
+  <p class="hero-body" >
+    The Swap Club is a community-driven platform that makes swapping easy, fun, and rewarding. People have so much to give and even more to gain when they swap, not shop.
+    We're on a mission to help people consume less, share more and feel good doing it. We host events, run a clubhouse and create a sustainable and inclusive community where everyone can participate in the joy of swapping.
+  </p>
+  <div class="impact-grid">
+    <div class="impact-item">
+      <span class="impact-num">1,000+</span>
+      <span class="impact-label">Items Swapped</span>
+    </div>
+    <div class="impact-item">
+      <span class="impact-num">300+</span>
+      <span class="impact-label">Community Members</span>
+    </div>
+    <div class="impact-item">
+      <span class="impact-num">20+</span>
+      <span class="impact-label">Events Hosted</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- STORY SECTION -->
+<section class="story" data-aos="fade-up">
+  <div class="story-grid">
+
+    <div class="story-text">
+      <div class="section-eyebrow">Our story</div>
+      <h2 class="section-title">Where it all started</h2>
+      <p>
+        The Swap Club started with one simple idea: what if we could trade what we already own without extra cost, and just pay for the service? In 2024, the first pop-up events in Amsterdam laid the foundation for a growing movement of people who come together to refresh their wardrobes, make new friends and try something new.
+      </p>
+      <p>
+        The spark came from a familiar moment: standing in front of a textile bin with a box of perfectly good clothes and asking: "Why are hundreds of millions of items thrown away every year when most are still wearable, and why is there no easy, affordable way to keep them in local circulation?". That question became The Swap Club.
+      </p>
+      <div class="about-socials">
+        <a href="https://instagram.com/theswapclub.nl" class="social-link" target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          Instagram
+        </a>
+        <a href="https://www.facebook.com/p/The-Swap-Club-Amsterdam-61560924692272/" class="social-link" target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </a>
+      </div>
+    </div>
+
+    <div class="story-photo">
+      <img src="{{ url_for('static', filename='images/our_story.jpg') }}" alt="The Swap Club founders Gokce and Megan" width="1199" height="1400" loading="lazy" decoding="async" />
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CLUBHOUSE SECTION -->
+<section id="clubhouse" class="clubhouse" data-aos="fade-up">
+  <div class="clubhouse-inner">
+
+    <div class="clubhouse-grid">
+      <div class="clubhouse-photo">
+        <img src="{{ url_for('static', filename='images/clubhouse.jpg') }}" alt="Browsing the rotating rack at The Swap Club clubhouse" class="clubhouse-photo clubhouse-photo-a" width="1427" height="1600" loading="lazy" decoding="async">
+      </div>
+      <div class="clubhouse-details">
+        <div class="section-eyebrow">Visit us</div>
+        <h2 class="section-title">Our clubhouse</h2>
+        <p class="clubhouse-intro">
+          Beyond our pop-up events, The Swap Club runs a clubhouse in Amsterdam. A space to browse, bring and swap clothes anytime, no event or booking needed.
+        </p>
+        <div class="clubhouse-detail">
+          <div>
+            <h3>Location</h3>
+            <p>De Clercqstraat 66, Amsterdam</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=The+Swap+Club+De+Clercqstraat+66+Amsterdam" target="_blank" rel="noopener noreferrer" class="clubhouse-link">Get directions</a>
+          </div>
+        </div>
+
+        <div class="clubhouse-detail">
+          <div>
+            <h3>Opening hours</h3>
+            <p>Wednesday &amp; Friday, 11:00–18:00</p>
+            <p>Saturday, 11:00–19:00</p>
+          </div>
+        </div>
+
+        <div class="clubhouse-detail">
+          <div>
+            <h3>How it works</h3>
+            <p>Walk in anytime during opening hours, browse the rotating rack, and swap using your points. No appointment needed.</p>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR VALUES SECTION -->
+<section id="values" class="values-section" data-aos="fade-up">
+  <div class="values-inner">
+    <div class="section-eyebrow" style="text-align:center;">What we stand for</div>
+    <h2 class="section-title" style="text-align:center;">Our Values</h2>
+
+    <div class="value-row">
+      <div class="value-photo">
+        <img src="{{ url_for('static', filename='images/com4.JPEG') }}" alt="Swap Club members browsing racks" loading="lazy" decoding="async">
+      </div>
+      <div class="value-text">
+        <span class="value-number">01</span>
+        <h3>Circularity</h3>
+        <p>We believe clothes deserve more than one life. By keeping garments in local circulation through swapping, we extend their lifespan and keep them out of the textile bin.</p>
+      </div>
+    </div>
+
+    <div class="value-row reverse">
+      <div class="value-photo">
+        <img src="{{ url_for('static', filename='images/com6.JPG') }}" alt="Friends swapping clothes together" loading="lazy" decoding="async">
+      </div>
+      <div class="value-text">
+        <span class="value-number">02</span>
+        <h3>Community</h3>
+        <p>Swapping is more than a transaction. It's a way to meet people, share stories, and build real connections over a shared rack of clothes.</p>
+      </div>
+    </div>
+
+    <div class="value-row">
+      <div class="value-photo">
+        <img src="{{ url_for('static', filename='images/membership_02.JPG') }}" alt="Browsing the rack at The Swap Club" loading="lazy" decoding="async">
+      </div>
+      <div class="value-text">
+        <span class="value-number">03</span>
+        <h3>Accessibility</h3>
+        <p>Refreshing your wardrobe shouldn't come with a big price tag. Our points-based system makes sustainable style affordable and open to everyone.</p>
+      </div>
+    </div>
+
+    <div class="value-row reverse">
+      <div class="value-photo">
+        <img src="{{ url_for('static', filename='images/SwapClubImage_02.jpeg') }}" alt="Racks of clothing at a Swap Club event" loading="lazy" decoding="async">
+      </div>
+      <div class="value-text">
+        <span class="value-number">04</span>
+        <h3>Sustainability</h3>
+        <p>Every swap is a small act with a big impact: less textile waste, less overconsumption, and a lighter footprint for our city.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+{% endblock %}
