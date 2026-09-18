@@ -25,7 +25,7 @@
 }
 
 .contact-hero p {
-  max-width: 680px;
+  max-width: 800px;
   color: var(--plum);
   font-size: clamp(1rem, 1.5vw, 1.2rem);
   line-height: 1.7;
@@ -57,7 +57,7 @@
 .form-field select {
   width: 100%;
   padding: 13px 14px;
-  border: 1.5px solid var(--matcha);
+  border: 1.5px solid var(--plum);
   border-radius: 6px;
   background: #fff;
   color: var(--text);
@@ -83,9 +83,7 @@
   display: grid;
   gap: 16px;
   padding: 28px;
-  border: 1.5px solid var(--matcha);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.46);
 }
 
 .contact-info__item {
@@ -142,60 +140,56 @@
 }
 
 
-/* ───────── CONTACT INFO (no-form alternative) ───────── */
-.contact-info-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 8px;
-}
 
-.contact-info-item {
-  display: flex;
+/* ───────── LET'S WORK TOGETHER INTRO BANNER ───────── */
+.work-together-section { background: var(--plum); padding: 96px 6% 64px; text-align: center; }
+.work-together-inner { max-width: 640px; margin: 0 auto; }
+.work-together-section .section-eyebrow,
+.work-together-section .section-title { text-align: center; }
+.work-together-body { font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: rgba(var(--cream-rgb), 0.75); }
+.work-together-section .hero-btns {
   align-items: center;
-  gap: 14px;
-  padding: 16px 18px;
-  border-radius: 12px;
-  text-decoration: none;
-  transition: transform var(--transition), box-shadow var(--transition);
+  margin-top: 28px;
 }
-
-.contact-info-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+.work-together-section .hero-btns .btn-matcha {
+  flex: 0 1 220px;
+  justify-content: center;
+  text-align: center;
 }
-
-.contact-info-icon {
-  display: flex;
+.work-social-link {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
+  color: var(--plum);
   border-radius: 50%;
-  background-color: var(--plum);
+  transition: color var(--transition), background var(--transition), transform var(--transition);
+}
+.work-social-link svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+.work-social-link:hover,
+.work-social-link:focus-visible {
   color: var(--matcha);
+  background: var(--plum);
+  transform: translateY(-2px);
 }
 
-.contact-info-label {
-  display: block;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--text-mid);
-}
-
-.contact-info-value {
-  display: block;
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-dark);
-}
-
-.contact-info-cta {
-  margin-top: 22px;
-  display: inline-block;
+@media (max-width: 600px) {
+  .why-partner-section, .services-section, .stories-section, .partner-cta-section, .work-together-section { padding-left: 6%; padding-right: 6%; }
+  .work-together-section .hero-btns {
+    gap: 12px;
+  }
+  .work-together-section .hero-btns .btn-matcha {
+    flex-basis: 100%;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto 2px;
+  }
+  .work-social-link {
+    flex: 0 0 44px;
+  }
 }

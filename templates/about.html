@@ -104,58 +104,9 @@
   </div>
 </section>
 
-<!-- OUR VALUES SECTION -->
-<section id="values" class="values-section" data-aos="fade-up">
-  <div class="values-inner">
-    <div class="section-eyebrow" style="text-align:center;">What we stand for</div>
-    <h2 class="section-title" style="text-align:center;">Our Values</h2>
 
-    <div class="value-row">
-      <div class="value-photo">
-        <img src="{{ url_for('static', filename='images/com4.JPEG') }}" alt="Swap Club members browsing racks" loading="lazy" decoding="async">
-      </div>
-      <div class="value-text">
-        <span class="value-number">01</span>
-        <h3>Circularity</h3>
-        <p>We believe clothes deserve more than one life. By keeping garments in local circulation through swapping, we extend their lifespan and keep them out of the textile bin.</p>
-      </div>
-    </div>
 
-    <div class="value-row reverse">
-      <div class="value-photo">
-        <img src="{{ url_for('static', filename='images/com6.JPG') }}" alt="Friends swapping clothes together" loading="lazy" decoding="async">
-      </div>
-      <div class="value-text">
-        <span class="value-number">02</span>
-        <h3>Community</h3>
-        <p>Swapping is more than a transaction. It's a way to meet people, share stories, and build real connections over a shared rack of clothes.</p>
-      </div>
-    </div>
-
-    <div class="value-row">
-      <div class="value-photo">
-        <img src="{{ url_for('static', filename='images/membership_02.JPG') }}" alt="Browsing the rack at The Swap Club" loading="lazy" decoding="async">
-      </div>
-      <div class="value-text">
-        <span class="value-number">03</span>
-        <h3>Accessibility</h3>
-        <p>Refreshing your wardrobe shouldn't come with a big price tag. Our points-based system makes sustainable style affordable and open to everyone.</p>
-      </div>
-    </div>
-
-    <div class="value-row reverse">
-      <div class="value-photo">
-        <img src="{{ url_for('static', filename='images/SwapClubImage_02.jpeg') }}" alt="Racks of clothing at a Swap Club event" loading="lazy" decoding="async">
-      </div>
-      <div class="value-text">
-        <span class="value-number">04</span>
-        <h3>Sustainability</h3>
-        <p>Every swap is a small act with a big impact: less textile waste, less overconsumption, and a lighter footprint for our city.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
+{% include "social_section.html" %}
 
 
 {% endblock %}

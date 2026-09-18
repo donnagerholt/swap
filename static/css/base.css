@@ -40,6 +40,8 @@
   --font-body:    'Syne', sans-serif;
   --font-mono:    'Space Mono', monospace;
   --font-quote:   "Snell Roundhand", cursive
+  --font-writtenscript: 'Pinyon Script', cursive;
+
 
   /* Layout */
   --nav-h: 68px;
@@ -110,6 +112,77 @@ body {
 .page-content { padding-top: var(--nav-h); }
 
 
+
+
+
+
+/* ─────────────────────────────────────────────
+   HORIZONTAL SCROLL / MARQUEE CAROUSELS
+   ───────────────────────────────────────────── */
+.hscroll-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.hscroll {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  touch-action: pan-y pinch-zoom;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.hscroll::-webkit-scrollbar { display: none; }
+
+.hscroll.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.hscroll img {
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hscroll-btn {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(var(--cream-rgb), 0.9);
+  color: var(--plum);
+  box-shadow: 0 8px 22px rgba(var(--text-rgb), 0.16);
+  cursor: pointer;
+  font-size: 34px;
+  line-height: 1;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hscroll-btn.prev { left: 14px; }
+.hscroll-btn.next { right: 14px; }
+
+.hscroll-btn:hover,
+.hscroll-btn:focus-visible {
+  background: var(--plum);
+  color: var(--cream);
+}
+
+@media (max-width: 700px) {
+  .hscroll-btn { display: none; }
+}
 
 
 

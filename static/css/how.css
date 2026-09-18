@@ -150,7 +150,7 @@
 
 
 /* PRACTICAL INFO */
-.practical-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+.practical-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 
 .info-card { background: var(--plum-mid); border-radius: 20px; padding: 30px; }
 
@@ -202,25 +202,17 @@
 }
 
 .examples-marquee {
-  overflow: hidden;
+  position: relative;
   width: 100vw;
   margin-left: 50%;
   transform: translateX(-50%);
 }
 
 .examples-track {
-  display: flex;
-  width: max-content;
-  animation: examplesMarquee 35s linear infinite;
-  will-change: transform;
+  padding-left: max(6%, calc(50vw - 600px));
 }
 
 .examples-set { display: flex; gap: 30px; padding-right: 30px; flex: 0 0 auto; }
-
-@keyframes examplesMarquee {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-50%, 0, 0); }
-}
 
 .example-card {
   width: var(--card-width, 360px);
@@ -283,6 +275,10 @@
 .example-breakdown span { display: block; width: 78%; border-top: 1.5px dashed var(--cream); margin: 7px 0; }
 
 /* ───────── RESPONSIVE (mobile) ───────── */
+@media (max-width: 1100px) {
+  .practical-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 900px) {
   .events-hero { flex-direction: column; align-items: flex-start; min-height: auto; padding: 100px 6% 72px; gap: 48px; }
   .events-hero-text h1 { font-size: 4rem; }

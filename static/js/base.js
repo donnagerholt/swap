@@ -168,11 +168,23 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastTs = null;
     let rafId = null;
     let userInteracting = false;
+    let dragStartX = 0;
+    let dragStartScrollLeft = 0;
+    let suppressClick = false;
 
     // Looping distance: if the content was built as two duplicate sets
     // (for a seamless loop), reset once we've scrolled past the first set.
-    const loopWidth = track.scrollWidth / 2;
     const canLoop = track.querySelectorAll(':scope > .hscroll-set').length >= 2;
+    const getLoopWidth = () => track.scrollWidth / 2;
+
+    function normalizeLoopPosition() {
+      if (!canLoop) return;
+      const loopWidth = getLoopWidth();
+      if (!loopWidth) return;
+      if (track.scrollLeft >= loopWidth) {
+        track.scrollLeft -= loopWidth;
+      }
+    }
 
     function step(ts) {
       if (!paused && !userInteracting) {
@@ -180,9 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const dt = (ts - lastTs) / 1000;
         lastTs = ts;
         track.scrollLeft += speed * dt;
-        if (canLoop && track.scrollLeft >= loopWidth) {
-          track.scrollLeft -= loopWidth;
-        }
+        normalizeLoopPosition();
       } else {
         lastTs = ts;
       }
@@ -195,17 +205,51 @@ document.addEventListener('DOMContentLoaded', () => {
       resumeTimer = setTimeout(() => { paused = false; }, 2500);
     }
 
+    function endInteraction() {
+      if (!userInteracting) return;
+      userInteracting = false;
+      track.classList.remove('is-dragging');
+      normalizeLoopPosition();
+      pauseThenResume();
+    }
+
     track.addEventListener('mouseenter', () => { paused = true; });
     track.addEventListener('mouseleave', () => { clearTimeout(resumeTimer); paused = false; });
-    track.addEventListener('touchstart', () => { userInteracting = true; }, { passive: true });
-    track.addEventListener('touchend', () => {
-      userInteracting = false;
-      pauseThenResume();
-    }, { passive: true });
-    track.addEventListener('pointerdown', () => { userInteracting = true; });
-    window.addEventListener('pointerup', () => {
-      if (userInteracting) { userInteracting = false; pauseThenResume(); }
+
+    track.addEventListener('pointerdown', (event) => {
+      if (event.button !== undefined && event.button !== 0) return;
+      userInteracting = true;
+      paused = true;
+      dragStartX = event.clientX;
+      dragStartScrollLeft = track.scrollLeft;
+      track.classList.add('is-dragging');
+      track.setPointerCapture?.(event.pointerId);
     });
+
+    track.addEventListener('pointermove', (event) => {
+      if (!userInteracting) return;
+      const deltaX = event.clientX - dragStartX;
+      if (Math.abs(deltaX) > 4) {
+        suppressClick = true;
+      }
+      track.scrollLeft = dragStartScrollLeft - deltaX;
+    });
+
+    track.addEventListener('pointerup', (event) => {
+      track.releasePointerCapture?.(event.pointerId);
+      endInteraction();
+    });
+
+    track.addEventListener('pointercancel', endInteraction);
+    track.addEventListener('lostpointercapture', endInteraction);
+
+    track.addEventListener('click', (event) => {
+      if (!suppressClick) return;
+      event.preventDefault();
+      event.stopPropagation();
+      suppressClick = false;
+    }, true);
+
     track.addEventListener('wheel', pauseThenResume, { passive: true });
 
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -261,5 +305,3 @@ if (counters.length) {
     counters.forEach(runCounter);
   }
 }
-
-
