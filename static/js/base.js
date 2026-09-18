@@ -152,24 +152,114 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ─────────────────────────────────────────────
+   HSCROLL carousels — manually scrollable
+   (drag / swipe / arrow buttons) marquee-style
+   strips that gently auto-advance, but pause as
+   soon as the user hovers, touches, or scrolls,
+   and resume a little while after they stop.
+   Used by: home (community photos), how (points
+   examples), about (values).
+   ───────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.hscroll').forEach(track => {
+    const speed = parseFloat(track.dataset.speed) || 28; // px / second
+    let paused = false;
+    let resumeTimer = null;
+    let lastTs = null;
+    let rafId = null;
+    let userInteracting = false;
+
+    // Looping distance: if the content was built as two duplicate sets
+    // (for a seamless loop), reset once we've scrolled past the first set.
+    const loopWidth = track.scrollWidth / 2;
+    const canLoop = track.querySelectorAll(':scope > .hscroll-set').length >= 2;
+
+    function step(ts) {
+      if (!paused && !userInteracting) {
+        if (lastTs === null) lastTs = ts;
+        const dt = (ts - lastTs) / 1000;
+        lastTs = ts;
+        track.scrollLeft += speed * dt;
+        if (canLoop && track.scrollLeft >= loopWidth) {
+          track.scrollLeft -= loopWidth;
+        }
+      } else {
+        lastTs = ts;
+      }
+      rafId = requestAnimationFrame(step);
+    }
+
+    function pauseThenResume() {
+      paused = true;
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => { paused = false; }, 2500);
+    }
+
+    track.addEventListener('mouseenter', () => { paused = true; });
+    track.addEventListener('mouseleave', () => { clearTimeout(resumeTimer); paused = false; });
+    track.addEventListener('touchstart', () => { userInteracting = true; }, { passive: true });
+    track.addEventListener('touchend', () => {
+      userInteracting = false;
+      pauseThenResume();
+    }, { passive: true });
+    track.addEventListener('pointerdown', () => { userInteracting = true; });
+    window.addEventListener('pointerup', () => {
+      if (userInteracting) { userInteracting = false; pauseThenResume(); }
+    });
+    track.addEventListener('wheel', pauseThenResume, { passive: true });
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      rafId = requestAnimationFrame(step);
+    }
+
+    // Prev / next arrow buttons, if present alongside this track.
+    const wrap = track.closest('.hscroll-wrap');
+    if (wrap) {
+      const prevBtn = wrap.querySelector('.hscroll-btn.prev');
+      const nextBtn = wrap.querySelector('.hscroll-btn.next');
+      const scrollByCard = (dir) => {
+        const card = track.querySelector(':scope > .hscroll-set > *') || track.firstElementChild;
+        const amount = (card ? card.getBoundingClientRect().width + 24 : track.clientWidth * 0.8) * dir;
+        pauseThenResume();
+        track.scrollBy({ left: amount, behavior: 'smooth' });
+      };
+      if (prevBtn) prevBtn.addEventListener('click', () => scrollByCard(-1));
+      if (nextBtn) nextBtn.addEventListener('click', () => scrollByCard(1));
+    }
+  });
+});
+
+/* ─────────────────────────────────────────────
    Impact stats count-up animation
    ───────────────────────────────────────────── */
 const counters = document.querySelectorAll('.counter');
-counters.forEach(counter => {
-  const updateCounter = () => {
+if (counters.length) {
+  const runCounter = (counter) => {
     const target = +counter.getAttribute('data-target');
-    const current = +counter.innerText;
+    const current = +counter.innerText.replace(/\D/g, '') || 0;
     const increment = target / 100;
 
     if (current < target) {
       counter.innerText = `${Math.ceil(current + increment)}`;
-      setTimeout(updateCounter, 20);
+      setTimeout(() => runCounter(counter), 20);
     } else {
       counter.innerText = target;
     }
   };
 
-  updateCounter();
-});
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          runCounter(entry.target);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(counter => observer.observe(counter));
+  } else {
+    counters.forEach(runCounter);
+  }
+}
 
 

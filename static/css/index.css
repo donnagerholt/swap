@@ -261,19 +261,10 @@
 .hours-strip span { opacity: 0.4; }
 
 
-
-
 /* ───────── THE COMMUNITY (floating flip-card story wall) ───────── */
 .community-section { background: var(--cream); padding: 100px 6%; }
 .community-inner { max-width: 1300px; margin: 0 auto; }
 
-/* Home page only: story wall cards stay static on the front image, no flip.
-   (community.css still gives the /community page the flipping version.) */
-.floating-swap-section .floating-flip-card { perspective: none !important; }
-.floating-swap-section .floating-flip-card:hover .floating-flip-inner,
-.floating-swap-section .floating-flip-card.is-flipped .floating-flip-inner {
-  transform: none !important;
-}
 .floating-swap-section .floating-card-front {
   position: static !important;
   width: 100% !important;
@@ -289,7 +280,13 @@
   margin-bottom: 16px;
 }
 
-.community-body { font-size: 14px; color: var(--text-mid); max-width: 560px; line-height: 1.7; margin-bottom: 48px; }
+.community-body { 
+  font-size: 14px; 
+  color: var(--text-mid); 
+  line-height: 1.7; 
+  margin-bottom: 48px; 
+}
+
 
 /* ───────── RESPONSIVE ───────── */
 @media (max-width: 900px) {
