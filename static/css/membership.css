@@ -35,6 +35,7 @@
 }
 .hero-headline span { color: var(--cream); }
 .hero-body { font-size: 17px; line-height: 1.6; color: rgba(var(--plum-rgb), 0.72); max-width: 420px; margin-bottom: 36px; }
+.hero .hero-btns { justify-content: flex-start; }
 .hero-btn { display: block; 
   margin-top: 16px; 
   width: 100%; 

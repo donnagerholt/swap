@@ -28,7 +28,7 @@ app.secret_key = os.environ.get("SECRET_KEY", "dev-only-secret-change-me")
 # ── Email configuration (all read from environment variables) ──
 SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT = int(os.environ.get("SMTP_PORT", "587"))
-SMTP_USERNAME = os.environ.get("SMTP_USERNAME")
+SMTP_USERNAME = os.environ.get("SMTP_USERNAME", "info@theswapclub.nl")
 SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
 # Where contact-form submissions and newsletter signups are delivered.
 CONTACT_TO_EMAIL = os.environ.get("CONTACT_TO_EMAIL", "info@theswapclub.nl")

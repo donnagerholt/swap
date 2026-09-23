@@ -10,7 +10,7 @@
    tokens and components defined here.
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=Pinyon+Script&display=swap');
 
 /* ─── DESIGN TOKENS — Plum & Matcha palette ─── */
 :root {
@@ -39,7 +39,7 @@
   --font-display: 'Anton', sans-serif;
   --font-body:    'Syne', sans-serif;
   --font-mono:    'Space Mono', monospace;
-  --font-quote:   "Snell Roundhand", cursive
+  --font-quote:   "Snell Roundhand", cursive;
   --font-writtenscript: 'Pinyon Script', cursive;
 
 
@@ -53,7 +53,11 @@
 
 /* ─── RESET ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
 a { text-decoration: none; color: inherit; }
 img { display: block; max-width: 100%; }
 ul { list-style: none; }
@@ -390,6 +394,8 @@ nav {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
+
+.stats-bar-3 { grid-template-columns: repeat(3, 1fr); }
 
 .stat-item {
   display: flex;
@@ -773,16 +779,16 @@ nav {
    ───────────────────────────────────────────── */
 .tiers { 
   background: var(--plum); 
-  padding: 96px 48px; 
+  padding: 64px 48px; 
 }
 .tiers-header { 
   text-align: center; 
-  margin-bottom: 56px; 
+  margin-bottom: 32px; 
 }
 .tiers-header .section-eyebrow { color: var(--matcha); }
 .tiers-header .section-title { color: var(--cream); margin-bottom: 0; }
 
-.tiers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 1100px; margin: 0 auto; }
+.tiers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: 1100px; margin: 0 auto; }
 
 .tier-card {
   background: var(--cream);
@@ -795,15 +801,15 @@ nav {
 .tier-card.featured { background: var(--matcha); border: none; }
 .tier-card.premium  { background: var(--lilac); border: none; }
 
-.tier-head { padding: 28px 24px 20px; border-bottom: 1px solid rgba(var(--plum-rgb), 0.1); }
+.tier-head { padding: 20px 22px 16px; border-bottom: 1px solid rgba(var(--plum-rgb), 0.1); }
 .tier-card.featured .tier-head,
 .tier-card.premium .tier-head { border-bottom: 1px solid rgba(var(--plum-rgb), 0.1); }
 
-.tier-label { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; color: rgba(var(--plum-rgb), 0.4); }
+.tier-label { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 6px; color: rgba(var(--plum-rgb), 0.4); }
 .tier-card.featured .tier-label,
 .tier-card.premium .tier-label { color: rgba(var(--plum-rgb), 0.45); }
 
-.tier-name { font-family: var(--font-display); font-weight: 900; font-size: 26px; text-transform: uppercase; color: var(--text); line-height: 1; margin-bottom: 12px; }
+.tier-name { font-family: var(--font-display); font-weight: 900; font-size: 24px; text-transform: uppercase; color: var(--text); line-height: 1; margin-bottom: 8px; }
 .tier-card.featured .tier-name,
 .tier-card.premium .tier-name { color: var(--text); }
 
@@ -815,9 +821,9 @@ nav {
 .tier-card.featured .tier-period,
 .tier-card.premium .tier-period { color: rgba(var(--plum-rgb), 0.4); }
 
-.tier-body { padding: 20px 24px 24px; flex: 1; display: flex; flex-direction: column; }
+.tier-body { padding: 14px 22px 20px; flex: 1; display: flex; flex-direction: column; }
 
-.tier-feature { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: rgba(var(--text), 0.78); padding: 8px 0; border-bottom: 1px solid rgba(var(--plum-rgb), 0.07); line-height: 1.4; }
+.tier-feature { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: rgba(var(--text), 0.78); padding: 6px 0; border-bottom: 1px solid rgba(var(--plum-rgb), 0.07); line-height: 1.35; }
 .tier-card.featured .tier-feature,
 .tier-card.premium .tier-feature { color: var(--text); border-bottom-color: rgba(var(--plum-rgb), 0.08); }
 .tier-feature:last-child { border-bottom: none; }
@@ -894,6 +900,13 @@ nav {
 @media (max-width: 600px) {
   .join-cta-row { flex-direction: column; align-items: center; }
   .join-cta-row .btn { width: 100%; max-width: 280px; }
+
+  .tiers { padding: 48px 20px; }
+  .tiers-header { margin-bottom: 24px; }
+  .tiers-grid { gap: 12px; }
+  .tier-head { padding: 16px 18px 12px; }
+  .tier-body { padding: 12px 18px 16px; }
+  .tier-feature { padding: 5px 0; }
 }
 
 
@@ -1037,6 +1050,7 @@ footer {
     padding: 8px 20px;
   }
   .page-content { padding-top: var(--nav-h-mobile); }
+  html { scroll-padding-top: calc(var(--nav-h-mobile) + 12px); }
 
   .nav-left {
     display: flex;

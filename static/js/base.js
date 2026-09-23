@@ -161,8 +161,17 @@ document.addEventListener('DOMContentLoaded', () => {
    examples), about (values).
    ───────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
+  const reduceMotionMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let reduceMotion = reduceMotionMQ.matches;
+  const onReduceMotionChange = (e) => { reduceMotion = e.matches; };
+  if (reduceMotionMQ.addEventListener) {
+    reduceMotionMQ.addEventListener('change', onReduceMotionChange);
+  } else if (reduceMotionMQ.addListener) {
+    reduceMotionMQ.addListener(onReduceMotionChange);
+  }
+
   document.querySelectorAll('.hscroll').forEach(track => {
-    const speed = parseFloat(track.dataset.speed) || 28; // px / second
+    const speed = parseFloat(track.dataset.speed) || 34; // px / second
     let paused = false;
     let resumeTimer = null;
     let lastTs = null;
@@ -187,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function step(ts) {
-      if (!paused && !userInteracting) {
+      if (!paused && !userInteracting && !reduceMotion) {
         if (lastTs === null) lastTs = ts;
         const dt = (ts - lastTs) / 1000;
         lastTs = ts;
@@ -242,6 +251,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     track.addEventListener('pointercancel', endInteraction);
     track.addEventListener('lostpointercapture', endInteraction);
+    // Safety net: if a pointerup/cancel is ever missed (e.g. the pointer is
+    // released outside the element without capture), don't let the track
+    // stay paused forever.
+    window.addEventListener('pointerup', endInteraction);
+    window.addEventListener('blur', endInteraction);
 
     track.addEventListener('click', (event) => {
       if (!suppressClick) return;
@@ -252,9 +266,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     track.addEventListener('wheel', pauseThenResume, { passive: true });
 
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      rafId = requestAnimationFrame(step);
-    }
+    // Always run the loop; the reduced-motion check inside step() is what
+    // actually gates movement, so a live preference change is honored too.
+    rafId = requestAnimationFrame(step);
 
     // Prev / next arrow buttons, if present alongside this track.
     const wrap = track.closest('.hscroll-wrap');
@@ -278,7 +292,14 @@ document.addEventListener('DOMContentLoaded', () => {
    ───────────────────────────────────────────── */
 const counters = document.querySelectorAll('.counter');
 if (counters.length) {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finalText = (counter) => counter.getAttribute('data-final') || counter.getAttribute('data-target');
+
   const runCounter = (counter) => {
+    if (prefersReducedMotion) {
+      counter.innerText = finalText(counter);
+      return;
+    }
     const target = +counter.getAttribute('data-target');
     const current = +counter.innerText.replace(/\D/g, '') || 0;
     const increment = target / 100;
@@ -287,7 +308,7 @@ if (counters.length) {
       counter.innerText = `${Math.ceil(current + increment)}`;
       setTimeout(() => runCounter(counter), 20);
     } else {
-      counter.innerText = target;
+      counter.innerText = finalText(counter);
     }
   };
 

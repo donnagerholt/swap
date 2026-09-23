@@ -270,6 +270,11 @@
 
 .floating-swap-header { text-align: center; max-width: 800px; margin: 0 auto 56px; padding: 0 6%; }
 
+.font-writtenscript {
+  font-family: var(--font-writtenscript);
+  font-weight: 400;
+}
+
 .floating-swap-header p {
   position: relative;
   max-width: 800px;
@@ -277,6 +282,7 @@
   padding: 20px;
   text-align: center;
   font-size: clamp(3rem, 7vw, 6rem);
+  font-family: var(--font-writtenscript);
 }
 
 .home-floating-swap-section .floating-swap-header p {
@@ -295,9 +301,9 @@
 }
 
 .floating-card-track-wrap {
-  --card-width: 260px;
-  --card-height: 340px;
-  --card-gap: 28px;
+  --card-width: 320px;
+  --card-height: 420px;
+  --card-gap: 24px;
   width: 100%;
 }
 
@@ -404,7 +410,7 @@
 
 /* ───────── RESPONSIVE ───────── */
 @media (max-width: 900px) {
-  .floating-card-track-wrap { --card-width: 210px; --card-height: 290px; --card-gap: 18px; }
+  .floating-card-track-wrap { --card-width: 260px; --card-height: 340px; --card-gap: 18px; }
   .floating-swap-section { padding: 80px 0; }
   .floating-card-back { padding: 22px; }
   .floating-card-back h3 { font-size: 1.5rem; }
@@ -420,6 +426,12 @@
 
   .floating-swap-header p { padding: 16px 8px; }
   .home-floating-swap-section .floating-swap-header p { font-size: clamp(1.8rem, 9vw, 2.4rem); }
+
+  .floating-card-track-wrap {
+    --card-width: min(78vw, 320px);
+    --card-height: min(102vw, 420px);
+    --card-gap: 14px;
+  }
 }
 
 
