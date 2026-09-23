@@ -268,16 +268,16 @@
 /* ───────── FLOATING STORY WALL (marquee flip-cards) ───────── */
 .floating-swap-section { background: var(--cream); padding: 100px 0; overflow: hidden; }
 
-.floating-swap-header { text-align: center; max-width: 800px; margin: 0 auto 56px; padding: 0 6%; }
+.floating-swap-header { text-align: center; max-width: 1000px; margin: 0 auto 56px; padding: 0 6%; }
 
 .font-writtenscript {
   font-family: var(--font-writtenscript);
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .floating-swap-header p {
   position: relative;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 40px auto;
   padding: 20px;
   text-align: center;
@@ -286,7 +286,7 @@
 }
 
 .home-floating-swap-section .floating-swap-header p {
-  max-width: 720px;
+  max-width: 800px;
   font-size: clamp(2.1rem, 3.4vw, 3.25rem);
   line-height: 1.25;
 }
