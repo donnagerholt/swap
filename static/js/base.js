@@ -183,8 +183,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Looping distance: if the content was built as two duplicate sets
     // (for a seamless loop), reset once we've scrolled past the first set.
-    const canLoop = track.querySelectorAll(':scope > .hscroll-set').length >= 2;
-    const getLoopWidth = () => track.scrollWidth / 2;
+    const sets = track.querySelectorAll(':scope > .hscroll-set');
+    const canLoop = sets.length >= 2;
+    // Measure the actual gap between the start of set 1 and the start of
+    // set 2, rather than assuming scrollWidth splits evenly in half. The
+    // two sets can be separated by a margin (see .hscroll-set + .hscroll-set),
+    // so scrollWidth / 2 drifted a few pixels further out of sync on every
+    // loop, causing a small visible jump over time.
+    const getLoopWidth = () => (canLoop ? sets[1].offsetLeft - sets[0].offsetLeft : track.scrollWidth);
 
     function normalizeLoopPosition() {
       if (!canLoop) return;

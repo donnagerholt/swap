@@ -33,7 +33,7 @@
 .hero-headline H2 { 
   color: var(--plum); 
 }
-.hero-headline span { color: var(--cream); }
+.hero-headline span { color: var(--hot-pink); }
 .hero-body { font-size: 17px; line-height: 1.6; color: rgba(var(--plum-rgb), 0.72); max-width: 420px; margin-bottom: 36px; }
 .hero .hero-btns { justify-content: flex-start; }
 .hero-btn { display: block; 
@@ -93,6 +93,19 @@
   font-size: 13px; 
   color: var(--plum-mid); 
   line-height: 1.5; 
+}
+
+.luma-calendar-wrapper {
+  width: 100%;
+  max-width: 1000px;
+}
+
+.luma-calendar-wrapper iframe {
+  min-height: 450px;
+  height: 70vh; /* scales with viewport */
+  max-height: 900px;
+  display: block;
+  width: 100%;
 }
 
 /* ───────── COMPARE: TICKET VS MEMBERSHIP ───────── */

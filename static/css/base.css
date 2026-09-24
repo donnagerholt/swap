@@ -23,6 +23,10 @@
   --cream: #fbf1e6;
   --text: #1A0710;
   --lilac: #E6D4F0;
+  --orange: #ffa74f;
+  --hot-orange: #ff6a1b;
+  --hot-pink: #ff397e;
+  --light-blue: #cce8fe;
 
   /* RGB channels (for rgba() usage without new variables per opacity) */
   --plum-rgb: 79, 12, 40;

@@ -10,41 +10,63 @@
 {% block content %}
 
 <section class="hero-section" data-aos="fade-up">
-  <video
-    class="background-video"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="auto"
-    poster="{{ url_for('static', filename='images/hero_image.jpg') }}"
-    aria-hidden="true"
-  >
-    <source src="{{ url_for('static', filename='images/hero_video.mp4') }}" type="video/mp4">
-    Your browser does not support HTML video.
-  </video>
+    <video
+        class="background-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="{{ url_for('static', filename='images/hero_image.jpg') }}"
+        aria-hidden="true"
+        >
+        <source src="{{ url_for('static', filename='images/hero_video.mp4') }}" type="video/mp4">
+        Your browser does not support HTML video.
+    </video>
 
-  <div class="hero-overlay"></div>
+    <div class="hero-overlay"></div>
 
-  <div class="background-video-content">
-    <div class="hero-text">
-      <h1 class="hero-headline">
-        Swapping is the<br>new shopping!
-      </h1>
+    <div class="background-video-content">
+        <div class="hero-text">
+            <h1 class="hero-headline">
+                Swapping is the<br>new shopping!
+            </h1>
 
-      <p class="hero-tagline">
-        The Swap Club is a community-driven space.<br>
-        We're on a mission to help people consume less,<br>
-        share more, and feel good doing it.
-      </p>
+            <p class="hero-tagline">
+                The Swap Club is a community-driven space.<br>
+                We're on a mission to help people consume less,<br>
+                share more, and feel good doing it.
+            </p>
 
-      <div class="hero-btns">
-        <a href="https://forms.piggy.eu/forms/7621a0c4-00d3-4691-95bd-f632186a5f4f/public/custom" target="_blank" rel="noopener noreferrer" class="btn btn-matcha">Join the Club</a>
-        <a href="/membership" target="_blank" rel="noopener noreferrer" class="btn btn-plum">Membership</a>
-        <a href="https://luma.com/theswapclub" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">Events</a>
-      </div>
+            <div class="hero-btns">
+                <a href="/membership" class="btn btn-matcha">Join the Club</a>
+                <a href="https://luma.com/theswapclub" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">Events</a>
+            </div>
+        </div>
     </div>
-  </div>
+
+    <a
+        class="hero-sticker"
+        href="https://luma.com/theswap-4uo1?lm_source=embed"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Join the Club — sign up now"
+        >
+        <svg class="hero-sticker-ring" viewBox="0 0 200 200" aria-hidden="true">
+            <path id="stickerCirclePath" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" fill="none"></path>
+            <text>
+                <textPath href="#stickerCirclePath" startOffset="0%">
+                  &#8226;&nbsp; JOIN THE KALVERSTRAAT SWAP &nbsp;&#8226;&nbsp; 9-11 Oktober &nbsp;
+                </textPath>
+            </text>
+        </svg>
+        <span class="hero-sticker-center" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 17L17 7"></path>
+                <path d="M8 7h9v9"></path>
+            </svg>
+        </span>
+    </a>
 
 </section>
 

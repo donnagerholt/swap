@@ -4,12 +4,15 @@
 
 .hero-section {
   position: relative;
-  min-height: 80vh;
+  /* Overrides base.css's height:100vh so the hours strip below the hero
+     is always visible in the first screenful, without scrolling. */
+  height: calc(100vh - var(--nav-h) - 60px);
+  min-height: 560px;
   overflow: hidden;
   display: flex;
   align-items: center;
   isolation: isolate;
-}
+}  
 
 .background-video {
   position: absolute;
@@ -47,6 +50,84 @@
 
 .hero-tagline {
   line-height: 1.6;
+}
+
+
+.hero-sticker {
+  position: absolute;
+  right: 6%;
+  bottom: 32px;
+  z-index: 3;
+  width: 148px;
+  height: 148px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--hot-orange);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+  transition: transform 0.25s ease;
+}
+
+.hero-sticker:hover,
+.hero-sticker:focus-visible { transform: scale(1.06); }
+
+.hero-sticker-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: hero-sticker-spin 14s linear infinite;
+}
+
+.hero-sticker-ring text {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  fill: var(--light-blue);
+}
+
+.hero-sticker-center {
+  position: relative;
+  z-index: 1;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--light-blue);
+  color: var(--hot-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-sticker-center svg { width: 18px; height: 18px; }
+
+@keyframes hero-sticker-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-sticker-ring { animation: none; }
+}
+
+@media (max-width: 900px) {
+  .hero-sticker { width: 120px; height: 120px; right: 5%; bottom: 22px; }
+  .hero-sticker-ring text { font-size: 11.5px; }
+  .hero-sticker-center { width: 28px; height: 28px; }
+  .hero-sticker-center svg { width: 15px; height: 15px; }
+}
+
+@media (max-width: 600px) {
+  .hero-sticker { width: 100px; height: 100px; right: 4%; bottom: 16px; }
+  .hero-sticker-ring text { font-size: 11px; }
+}
+
+@media (max-width: 380px) {
+.hero-sticker { width: 80px; height: 80px; right: 4%; bottom: 16px; }
+  .hero-sticker-ring text { font-size: 11px; }
 }
 
 @media (max-width: 768px) {
