@@ -15,9 +15,9 @@
 /* ─── DESIGN TOKENS — Plum & Matcha palette ─── */
 :root {
   /* Core palette */
-  --plum: #4F0C28;
-  --plum-deep: #360819;
-  --plum-mid: #6B1238;
+  --plum:  #3b0149;
+  --plum-deep: #3b0149;
+  --plum-mid: #3b0149;
   --matcha: #BAD797;
   --matcha-deep: #97ba75;
   --cream: #fbf1e6;
@@ -29,7 +29,7 @@
   --light-blue: #cce8fe;
 
   /* RGB channels (for rgba() usage without new variables per opacity) */
-  --plum-rgb: 79, 12, 40;
+  --plum-rgb: 59, 1, 73;
   --cream-rgb: 242, 237, 232;
   --text-rgb: 26, 7, 16;
 
