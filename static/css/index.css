@@ -82,7 +82,7 @@
 
 .hero-sticker-ring text {
   font-family: var(--font-body);
-  font-size: 13.5px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -115,19 +115,19 @@
 
 @media (max-width: 900px) {
   .hero-sticker { width: 120px; height: 120px; right: 5%; bottom: 22px; }
-  .hero-sticker-ring text { font-size: 11.5px; }
+  .hero-sticker-ring text { font-size: 16px; }
   .hero-sticker-center { width: 28px; height: 28px; }
   .hero-sticker-center svg { width: 15px; height: 15px; }
 }
 
 @media (max-width: 600px) {
   .hero-sticker { width: 100px; height: 100px; right: 4%; bottom: 16px; }
-  .hero-sticker-ring text { font-size: 11px; }
+  .hero-sticker-ring text { font-size: 15px; }
 }
 
 @media (max-width: 380px) {
 .hero-sticker { width: 80px; height: 80px; right: 4%; bottom: 16px; }
-  .hero-sticker-ring text { font-size: 11px; }
+  .hero-sticker-ring text { font-size: 13px; }
 }
 
 @media (max-width: 768px) {
